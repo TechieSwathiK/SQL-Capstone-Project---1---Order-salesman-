@@ -63,8 +63,28 @@ INSERT INTO Orders VALUES  ('70005', 2400.6, '2012-07-27', '3007', '5006');
   
  select * from customer
  Join orders on customer.customer_id = orders.customer_id
- where orders.ord_date = '2012-10-05'
-  
-  
-  
-  
+ where orders.ord_date = '2012-10-05';
+ 
+ 
+ 
+SELECT Orders.ord_no, Customer.cust_name, Orders.customer_id, Orders.Salesman_id
+FROM Orders
+JOIN Customer ON Orders.customer_id = Customer.customer_id
+JOIN Salesman ON Orders.Salesman_id = Salesman.Salesman_id
+WHERE Customer.city <> Salesman.city;
+
+
+-- Fetching all orders with customer names
+SELECT Orders.ord_no, Customer.cust_name
+FROM Orders
+JOIN Customer ON Orders.customer_id = Customer.customer_id;
+
+-- Customers with grades
+SELECT Customer.cust_name AS "Customer", Customer.grade AS "Grade"
+FROM Orders
+JOIN Salesman ON Orders.Salesman_id = Salesman.Salesman_id
+JOIN Customer ON Orders.customer_id = Customer.customer_id
+WHERE Customer.grade IS NOT NULL;
+
+
+
